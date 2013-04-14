@@ -4,6 +4,7 @@ import wolframalpha
 import os
 import sys
 import json
+import webbrowser
 
 # Read the input from Google's speech recognition
 jsonstr = sys.stdin.readlines()
@@ -24,34 +25,44 @@ phrase = phrase['hypotheses'][0]['utterance']
 # output to stderr for debug purposes
 sys.stderr.write(phrase + "\n")
 
-# grab the user's api key
-key = os.environ.get('WOLFRAM_API_KEY')
+# strip "computer" from beginning of phrase
+if phrase.startswith("computer "):
+    phrase = phrase[9:]
 
-if not key:
-    print "I can't contact the knowledge base without an API key. Set one in an environment variable."
-    sys.exit(0)
+if phrase.lower().startswith("google "):
+    phrase = phrase[7:]
+    url = "https://encrypted.google.com/search?hl-en&q=" + phrase
+    webbrowser.open(url)
+    print "Googling " + phrase
+else:
+    # grab the user's api key
+    key = os.environ.get('WOLFRAM_API_KEY')
 
-client = wolframalpha.Client(key)
+    if not key:
+        print "I can't contact the knowledge base without an API key. Set one in an environment variable."
+        sys.exit(0)
 
-# ask wolfram alpha for any info based on the query
-res = client.query(phrase)
+    client = wolframalpha.Client(key)
 
-try:
-    if len(res.pods) == 0:
-        # a bit messy but will do for now
-        raise StopIteration()
+    # ask wolfram alpha for any info based on the query
+    res = client.query(phrase)
 
-    for pod in res.results:
-        if hasattr(pod.text, "encode"):
-            # festival tts didn't recognise the utf8 degrees sign so we convert it to words
-            # there's probably more we need to add here
-            # convert to ascii too to prevent moans
-            print pod.text.replace(u"°", ' degrees ').encode('ascii', 'ignore')
-            sys.exit(0)
-        else:
-            break
+    try:
+        if len(res.pods) == 0:
+            # a bit messy but will do for now
+            raise StopIteration()
 
-    # TODO offer to display the result instead of a display is detected
-    print "I found a result but could not read it out to you. It could be a map, image or table."
-except StopIteration:
-    print "I couldn't find any results for the query, '" + phrase + "'"
+        for pod in res.results:
+            if hasattr(pod.text, "encode"):
+                # festival tts didn't recognise the utf8 degrees sign so we convert it to words
+                # there's probably more we need to add here
+                # convert to ascii too to prevent moans
+                print pod.text.replace(u"°", ' degrees ').encode('ascii', 'ignore')
+                sys.exit(0)
+            else:
+                break
+
+        # TODO offer to display the result instead of a display is detected
+        print "I found a result but could not read it out to you. It could be a map, image or table."
+    except StopIteration:
+        print "I couldn't find any results for the query, '" + phrase + "'"
