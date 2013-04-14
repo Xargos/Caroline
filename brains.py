@@ -13,13 +13,8 @@ if len(jsonstr) == 0:
     print "I didn't quite understand what you said."
     sys.exit(0)
 
-# There's only ever one line (I hope)
 jsonstr = jsonstr[0]
-
-# parse the json
 phrase = json.loads(jsonstr)
-
-# grab what the user said
 phrase = phrase['hypotheses'][0]['utterance']
 
 # output to stderr for debug purposes
@@ -49,7 +44,6 @@ else:
 
     try:
         if len(res.pods) == 0:
-            # a bit messy but will do for now
             raise StopIteration()
 
         for pod in res.results:
@@ -62,7 +56,6 @@ else:
             else:
                 break
 
-        # TODO offer to display the result instead of a display is detected
         print "I found a result but could not read it out to you. It could be a map, image or table."
     except StopIteration:
         print "I couldn't find any results for the query, '" + phrase + "'"
