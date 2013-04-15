@@ -19,6 +19,6 @@ def main():
         sys.exit(0)
 
     # take over the world
-    if globalvars.phrase.lower().find("take over the world"):
+    if globalvars.phrase.lower().find("take over the world") == True:
         print "Yes, one computer at a time! Hahaha"
         sys.exit(0)
