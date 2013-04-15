@@ -6,7 +6,6 @@ import sys
 import json
 import webbrowser
 import plugins
-from plugins import globalvars
 
 # read the input from Google's speech recognition
 jsonstr = sys.stdin.readlines()
@@ -29,8 +28,8 @@ if phrase.lower().startswith("computer "):
 if phrase.lower().startswith("caroline "):
     phrase = phrase[9:]
 
-# set global variable phrase via a module so plugins can access it
-globalvars.setPhrase(phrase)
+# set global variable phrase so plugins can access it
+plugins.setPhrase(phrase)
 
 # find and execute plugins
 plugins.getPlugins()

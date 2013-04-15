@@ -1,6 +1,11 @@
 import os
 import importlib
 
+# sets up phrase variable so plugins can use it
+def setPhrase(p):
+    global phrase
+    phrase = p
+
 def getPlugins():
     # get this folder's content
     contents = os.listdir(os.curdir + '/src/plugins')
