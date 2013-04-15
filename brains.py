@@ -30,7 +30,7 @@ if phrase.lower().startswith("google "):
     phrase = phrase[7:]
     url = "https://encrypted.google.com/search?hl-en&q=" + phrase
     webbrowser.open(url)
-    print "Googling " + phrase
+    print "Googling \"" + phrase + "\""
 else:
     # grab the user's api key
     key = os.environ.get('WOLFRAM_API_KEY')
@@ -48,6 +48,7 @@ else:
         if len(res.pods) == 0:
             raise StopIteration()
 
+        # if text is readable, read it
         for pod in res.results:
             if hasattr(pod.text, "encode"):
                 # festival tts didn't recognise the utf8 degrees sign so we convert it to words
@@ -58,6 +59,10 @@ else:
             else:
                 break
 
-        print "I found a result but could not read it out to you. It could be a map, image or table."
+        # text isn't readable, open in browser if 
+        url = "http://wolframalpha.com/input/?i=" + phrase
+        webbrowser.open(url)
+        print "The results cannot be spoken, so I will open your browser to show you."
+
     except StopIteration:
         print "I couldn't find any results for the query, '" + phrase + "'"
