@@ -1,7 +1,7 @@
 Caroline
 ========
 
-Caroline is a program that helps with everyday tasks and questions. Using voice recognition technology, ask her "When did Abraham Lincoln die?", "What is 2x + 7x" or even "Google cat videos". The Caroline project was forked from [Pi-Voice](https://github.com/rob-mccann/Pi-Voice).
+Caroline is a program that helps with everyday tasks and questions. Using voice recognition technology, you can ask her questions like "When did Abraham Lincoln die?", "What is 2x + 7x" or even "Google cat videos". The Caroline project was forked from [Pi-Voice](https://github.com/rob-mccann/Pi-Voice).
 
 Requirements
 ------------
