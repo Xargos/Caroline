@@ -59,7 +59,7 @@ else:
             else:
                 break
 
-        # text isn't readable, open in browser if 
+        # if text isn't readable, open in browser
         url = "http://wolframalpha.com/input/?i=" + phrase
         webbrowser.open(url)
         print "The results cannot be spoken, so I will open your browser to show you."
