@@ -43,6 +43,5 @@ def main():
         sys.exit(0)
     if globalvars.phrase.lower().startswith("google translate "):
         translate(17)
-
     if globalvars.phrase.lower().startswith("translate "):
         translate(10)

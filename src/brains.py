@@ -8,13 +8,14 @@ import webbrowser
 import plugins
 from plugins import globalvars
 
-# Read the input from Google's speech recognition
+# read the input from Google's speech recognition
 jsonstr = sys.stdin.readlines()
 
 if len(jsonstr) == 0:
     print "I didn't quite understand what you said."
     sys.exit(0)
 
+# grab the phrase
 jsonstr = jsonstr[0]
 phrase = json.loads(jsonstr)
 phrase = phrase['hypotheses'][0]['utterance']
@@ -36,13 +37,10 @@ plugins.getPlugins()
 
 # the following code will run only if the plugins don't run and exit
 
-# grab the user's api key
 key = os.environ.get('WOLFRAM_API_KEY')
-
 if not key:
     print "I can't contact the knowledge base without an API key. Set one in an environment variable."
     sys.exit(0)
-
 client = wolframalpha.Client(key)
 
 # ask wolfram alpha for any info based on the query
