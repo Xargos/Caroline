@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Records the microphone input and converts it into something that google can understand
-arecord -D plughw:0,0 -f cd -t wav -d 6 -r 16000 | flac - -f --best --sample-rate 16000 -o out.flac
+arecord -D plughw:0,0 -f cd -t wav -d $1 -r 16000 | flac - -f --best --sample-rate 16000 -o out.flac
 
 # Sends the microphone recording to Google who respond with the text. Our python script parses it and decides what to say
-WORDS=$(wget -O - -o /dev/null --post-file out.flac --header="Content-Type: audio/x-flac; rate=16000" http://www.google.com/speech-api/v1/recognize?lang=en | python brains.py)
+WORDS=$(wget -O - -o /dev/null --post-file out.flac --header="Content-Type: audio/x-flac; rate=16000" http://www.google.com/speech-api/v1/recognize?lang=en | python src/brains.py)
+
 # housekeeping
 rm out.flac
 

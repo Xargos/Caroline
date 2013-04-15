@@ -6,7 +6,7 @@ import sys
 import json
 import webbrowser
 import plugins
-import globalvars
+from plugins import globalvars
 
 # Read the input from Google's speech recognition
 jsonstr = sys.stdin.readlines()
