@@ -44,25 +44,22 @@ else:
     # ask wolfram alpha for any info based on the query
     res = client.query(phrase)
 
-    try:
-        if len(res.pods) == 0:
-            raise StopIteration()
-
-        # if text is readable, read it
-        for pod in res.results:
-            if hasattr(pod.text, "encode"):
-                # festival tts didn't recognise the utf8 degrees sign so we convert it to words
-                # there's probably more we need to add here
-                # convert to ascii too to prevent moans
-                print pod.text.replace(u"°", ' degrees ').encode('ascii', 'ignore')
-                sys.exit(0)
-            else:
-                break
-
-        # if text isn't readable, open in browser
-        url = "http://wolframalpha.com/input/?i=" + phrase
-        webbrowser.open(url)
-        print "The results cannot be spoken, so I will open your browser to show you."
-
-    except StopIteration:
+    if len(res.pods) == 0:
         print "I couldn't find any results for the query, '" + phrase + "'"
+        sys.exit(0)
+
+    # if text is readable, read it
+    for pod in res.results:
+        if hasattr(pod.text, "encode"):
+            # festival tts didn't recognise the utf8 degrees sign so we convert it to words
+            # there's probably more we need to add here
+            # convert to ascii too to prevent moans
+            print pod.text.replace(u"°", ' degrees ').encode('ascii', 'ignore')
+            sys.exit(0)
+        else:
+            break
+
+    # if text isn't readable, open in browser
+    url = "http://wolframalpha.com/input/?i=" + phrase
+    webbrowser.open(url)
+    print "The results cannot be spoken, so I will open your browser to show you."
