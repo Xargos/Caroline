@@ -26,6 +26,12 @@ def main():
     if globalvars.phrase.lower().startswith("search the internet for "):
         google(24)
 
+    # open google
+    if globalvars.phrase.lower() == "open google" or globalvars.phrase.lower() == "open google.com":
+        webbrowser.open("https://google.com/")
+        print "Opening Google"
+        sys.exit(0)
+
     # google drive
     if globalvars.phrase.lower() == "open google drive" or globalvars.phrase.lower() == "open google documents":
         webbrowser.open("https://drive.google.com/")
