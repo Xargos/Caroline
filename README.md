@@ -18,7 +18,7 @@ Usage
 1. Make sure you've got all the requirements installed
 2. Set the Wolfram Alpha API key as an environment variable ```export WOLFRAM_API_KEY='AAAAAA-AAAAAAAAAA'```
 3. Make sure src/listen.sh has execute privileges, or type ```chmod a+x src/listen.sh```
-3. Run ```./listen.sh```
+3. Run ```python caroline.py```
 
 How It Works
 ------------
