@@ -19,6 +19,6 @@ def main():
         sys.exit(0)
 
     # take over the world
-    if plugins.phrase.lower().find("take over the world") == True:
-        print "Yes, one computer at a time! Hahaha"
+    if plugins.phrase.lower().find("take over the world") != -1:
+        print "Yes, one computer at a time! Ha ha ha"
         sys.exit(0)
