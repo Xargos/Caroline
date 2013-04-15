@@ -20,8 +20,10 @@ phrase = phrase['hypotheses'][0]['utterance']
 # output to stderr for debug purposes
 sys.stderr.write(phrase + "\n")
 
-# strip "computer" from beginning of phrase
-if phrase.startswith("computer "):
+# strip "computer" and "caroline" from beginning of phrase
+if phrase.lower().startswith("computer "):
+    phrase = phrase[9:]
+if phrase.lower().startswith("caroline "):
     phrase = phrase[9:]
 
 if phrase.lower().startswith("google "):
