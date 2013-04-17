@@ -2,17 +2,20 @@ import sys
 import webbrowser
 import plugins
 
+
 def google(letters):
     url = "https://encrypted.google.com/search?hl-en&q=" + plugins.phrase[letters:]
     webbrowser.open(url)
     print "Googling \"" + plugins.phrase[letters:] + "\""
     sys.exit(0)
 
+
 def translate(letters):
     url = "http://translate.google.com/#auto/en/" + plugins.phrase[letters:]
     webbrowser.open(url)
     print "Translating \"" + plugins.phrase[letters:] + "\""
     sys.exit(0)
+
 
 def main():
 

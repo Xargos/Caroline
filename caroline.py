@@ -7,10 +7,10 @@ exit = False
 
 print "\nHello, welcome to the Caroline project."
 
-while exit != True:
-    
+while exit is not True:
+
     command = raw_input("\nEnter a command or type !help.\n")
-    
+
     if command == "":
         os.system("sh src/listen.sh 6")
     elif command.isdigit():
@@ -20,7 +20,7 @@ while exit != True:
         print "Press enter to record for a default 6 seconds"
         print "Enter a number to record for that many seconds"
         print "Type !help to see this help page"
-        print "Type !exit to quit the program"    
+        print "Type !exit to quit the program"
     elif command == "!exit":
         exit = True
     else:

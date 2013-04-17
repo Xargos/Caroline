@@ -2,6 +2,7 @@ import sys
 import webbrowser
 import plugins
 
+
 def main():
 
     # open website

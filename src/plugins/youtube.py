@@ -2,8 +2,9 @@ import sys
 import webbrowser
 import plugins
 
+
 def main():
-    
+
     # search youtube
     if plugins.phrase.lower().startswith("search youtube for ") or \
     plugins.phrase.lower().startswith("look on youtube for "):
