@@ -20,7 +20,7 @@ def main():
         sys.exit(0)
 
     # open youtube
-    if plugins.phrase.lower() == "open youtube" or plugins.phrase.lower() == "open you tube" or plugins.phrase.lower() == "open youtube.com":
+    if plugins.phrase.lower().startswith("open youtube") or plugins.phrase.lower().startswith("open you tube"):
         webbrowser.open("http://youtube.com/")
         print "Opening YouTube"
         sys.exit(0)

@@ -30,23 +30,23 @@ def main():
         google(24)
 
     # open google
-    if plugins.phrase.lower() == "open google" or plugins.phrase.lower() == "open google.com":
+    if plugins.phrase.lower().startswith("open google"):
         webbrowser.open("https://google.com/")
         print "Opening Google"
         sys.exit(0)
 
     # google drive
-    if plugins.phrase.lower() == "open google drive" or plugins.phrase.lower() == "open google documents":
+    if plugins.phrase.lower().startswith("open google drive") or plugins.phrase.lower().startswith("open google documents"):
         webbrowser.open("https://drive.google.com/")
         print "Opening Google Drive"
         sys.exit(0)
 
     # google translate
-    if plugins.phrase.lower() == "open google translate":
+    if plugins.phrase.lower().startswith("open google translate"):
         webbrowser.open("http://translate.google.com/")
         print "Opening Google Translate"
         sys.exit(0)
-    if plugins.phrase.lower() == "open gmail" or plugins.phrase.lower() == "open google mail":
+    if plugins.phrase.lower().startswith("open gmail") or plugins.phrase.lower().startswith("open google mail"):
         webbrowser.open("https://mail.google.com/mail/")
         print "Opening Google Mail"
         sys.exit(0)
