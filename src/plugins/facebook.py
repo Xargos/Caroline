@@ -13,6 +13,6 @@ def main():
 
     # open my facebook
     if plugins.phrase.lower().startswith("open my facebook") or plugins.phrase.lower().startswith("open my face book"):
-        webbrowser.open("http://facebook.com/")
-        print "Opening Facebook"
+        webbrowser.open("http://facebook.com/profile.php")
+        print "Opening your Facebook profile page"
         sys.exit(0)
